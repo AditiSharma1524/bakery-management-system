@@ -6,9 +6,6 @@ It showcases Docker containerization, service orchestration, networking, and int
 🏛️ System Architecture Diagram
 
 🛠️ System Architecture
-csharp
-Copy
-Edit
 [Frontend Web App]  <---->  [Backend API Service]  <---->  [PostgreSQL Database]
                                           |
                                  [RabbitMQ Message Broker]
