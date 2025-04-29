@@ -4,10 +4,8 @@ services:
   db:
     image: postgres:15
     container_name: bakery_db
-    environment:
-      POSTGRES_USER: bakery_user
-      POSTGRES_PASSWORD: bakery_pass
-      POSTGRES_DB: bakery_db
+    env_file:
+      - .env
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -16,7 +14,7 @@ services:
     networks:
       - bakery-net
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "bakery_user", "-d", "bakery_db"]
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
       interval: 10s
       retries: 5
       timeout: 5s
@@ -30,6 +28,8 @@ services:
     depends_on:
       - db
       - rabbitmq
+    env_file:
+      - .env
     ports:
       - "5000:5000"
     networks:
@@ -49,6 +49,8 @@ services:
     depends_on:
       - db
       - rabbitmq
+    env_file:
+      - .env
     networks:
       - bakery-net
     healthcheck:
@@ -81,9 +83,8 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: bakery_rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: bakery
-      RABBITMQ_DEFAULT_PASS: bakery123
+    env_file:
+      - .env
     ports:
       - "5672:5672"
       - "15672:15672"

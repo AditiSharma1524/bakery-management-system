@@ -41,9 +41,9 @@ docker-compose up --build
 
 Access the services:
 
-Frontend: http://localhost:3000
+Frontend: http://localhost:8080
 
-Backend API: http://localhost:8000
+Backend API: http://localhost:5000
 
 RabbitMQ Management UI (Optional): http://localhost:15672
 (Username: bakery, Password: bakery123)
@@ -145,8 +145,11 @@ README.md              # Project documentation
 
 .gitignore             # Git ignored files
 
+.env
+
 docs/
 
 architecturual_diagram.png   # Architecture diagram 
+
 
 🎉 Thank you for checking out the Bakery Management System!

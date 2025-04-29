@@ -2,25 +2,35 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS  # 🔥 Added for frontend-backend communication
 import psycopg2
 import pika  # Import pika for RabbitMQ communication
+import os  # To access environment variables
 
 app = Flask(__name__)
 CORS(app)  # 🔓 Enables CORS for all routes
 
+DB_HOST = os.getenv("DB_HOST", "db")  # fallback default
+DB_NAME = os.getenv("POSTGRES_DB")
+DB_USER = os.getenv("POSTGRES_USER")
+DB_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+
+RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "rabbitmq")
+RABBITMQ_USER = os.getenv("RABBITMQ_DEFAULT_USER")
+RABBITMQ_PASSWORD = os.getenv("RABBITMQ_DEFAULT_PASS")
+
 def get_db_connection():
     return psycopg2.connect(
-        dbname="bakery_db",
-        user="bakery_user",
-        password="bakery_pass",
-        host="db",  # docker-compose service name
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
         port="5432"
     )
 
 def publish_order_to_rabbitmq(order_id, product_id):
-    # Use the correct credentials for RabbitMQ
-    credentials = pika.PlainCredentials('bakery', 'bakery123')  # Correct credentials
+    # Use the credentials from environment variables for RabbitMQ
+    credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(
-            host='rabbitmq',
+            host=RABBITMQ_HOST,
             credentials=credentials  # Pass credentials to the connection
         )
     )

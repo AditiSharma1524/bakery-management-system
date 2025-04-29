@@ -1,14 +1,24 @@
 import pika
 import psycopg2
 import time
+import os
+
+DB_HOST = os.getenv("DB_HOST", "db")  # fallback default
+DB_NAME = os.getenv("POSTGRES_DB")
+DB_USER = os.getenv("POSTGRES_USER")
+DB_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+
+RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "rabbitmq")
+RABBITMQ_USER = os.getenv("RABBITMQ_DEFAULT_USER")
+RABBITMQ_PASSWORD = os.getenv("RABBITMQ_DEFAULT_PASS")
 
 # Connect to the PostgreSQL database
 def get_db_connection():
     return psycopg2.connect(
-        dbname="bakery_db",
-        user="bakery_user",
-        password="bakery_pass",
-        host="db",
+        dbname=DB_NAME,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
         port="5432"
     )
 
@@ -59,8 +69,8 @@ for i in range(10):
     try:
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(
-                host='rabbitmq',
-                credentials=pika.PlainCredentials('bakery', 'bakery123')
+                host=RABBITMQ_HOST,
+                credentials=pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD)
             )
         )
         print("✅ Connected to RabbitMQ!")
