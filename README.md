@@ -1,6 +1,6 @@
-🍞 Bakery Management System
-
-📜 Project Overview
+🍞 **Bakery Management System**
+--
+📜 **Project Overview**
 
 
 The Bakery Management System is a containerized multi-service application designed to manage bakery products, orders, and order statuses.
@@ -9,8 +9,8 @@ It showcases Docker containerization, service orchestration, networking, and int
 
 
 
-
-🛠️ System Architecture
+---
+🛠️ **System Architecture**
                           
 Frontend: User interface to browse products and place orders.
 
@@ -22,7 +22,9 @@ PostgreSQL: Stores products and orders.
 
 RabbitMQ: Message broker for decoupling order placement and order processing.
 
-🚀 Setup Instructions
+---
+🚀 **Setup Instructions**
+
 Prerequisites
 Docker
 
@@ -32,7 +34,7 @@ Installation Steps
 Clone the repository
 
 
-git clone <your-repo-link>
+git clone this repo
 cd bakery-system
 
 Build and run the containers:
@@ -51,7 +53,9 @@ RabbitMQ Management UI (Optional): http://localhost:15672
 To stop the services:
 docker-compose down
 
-🧩 API Documentation
+---
+🧩 **API Documentation**
+
 1. List Products
 Endpoint: GET /products
 
@@ -66,6 +70,7 @@ Response:
     "name": "Chocolate Cake",
     "price": 500
   }
+
 
 2. Place an Order
 Endpoint: POST /order
@@ -85,7 +90,19 @@ Response:
   "message": "Order placed successfully!",
   "order_id": 101
 }
+
 3. Check Order Status
+Endpoint: GET /5000/health
+
+Description: Check the health of backend.
+
+Response:
+
+{
+    "status": "healthy"
+}
+
+4. Health check
 Endpoint: GET /order/:id
 
 Description: Check the status of an order.
@@ -98,7 +115,10 @@ Response:
   "status": "Completed"
 }
 
-⚙️ Advanced Features Implemented
+---
+
+⚙️ **Advanced Features Implemented**
+
 Separate Backend API and Worker Containers:
 
 backend/app.py (API Server) → Dockerfile.app
@@ -121,7 +141,8 @@ Simple Lightweight Frontend:
 
 Minimalistic frontend for quick browsing and order placement without frontend frameworks.
 
-🗂️ Repository Structure
+---
+🗂️ **Repository Structure**
 /
 
 backend/              
