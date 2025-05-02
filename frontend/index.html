@@ -4,41 +4,106 @@
   <meta charset="UTF-8">
   <title>Bakery Shop</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    h2 { margin-top: 30px; }
-    input, button { margin: 5px 0; padding: 6px; }
+   body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff8f0;
+  color: #333;
+  padding: 30px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: auto;
+}
 
-    /* Toast styles */
-    #toast {
-      visibility: hidden;
-      min-width: 250px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 12px;
-      position: fixed;
-      z-index: 1;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 16px;
-    }
+h1 {
+  text-align: center;
+  color: #b76e79;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
 
-    #toast.show {
-      visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
+h2 {
+  margin-top: 40px;
+  color: #d07c8c;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #f0d0d8;
+  padding-bottom: 5px;
+}
 
-    @keyframes fadein {
-      from { bottom: 0; opacity: 0; }
-      to { bottom: 30px; opacity: 1; }
-    }
+input[type="number"], button {
+  padding: 10px;
+  margin: 10px 5px 15px 0;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
-    @keyframes fadeout {
-      from { bottom: 30px; opacity: 1; }
-      to { bottom: 0; opacity: 0; }
-    }
+input[type="number"] {
+  width: 200px;
+}
+
+button {
+  background-color: #e89cae;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #d07c8c;
+}
+
+label {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  background: #ffe8ee;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border-left: 4px solid #d07c8c;
+}
+
+/* Toast styles */
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 12px;
+  position: fixed;
+  z-index: 1;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+}
+
+#toast.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { bottom: 30px; opacity: 1; }
+  to { bottom: 0; opacity: 0; }
+}
+
   </style>
 </head>
 <body>
