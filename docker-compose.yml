@@ -47,12 +47,15 @@ services:
       dockerfile: Dockerfile.worker
     container_name: bakery_worker
     depends_on:
-      - db
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy  # Wait until RabbitMQ is healthy
+      db:
+        condition: service_started
     env_file:
       - .env
     networks:
       - bakery-net
+    
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 10s
