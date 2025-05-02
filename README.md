@@ -170,7 +170,7 @@ README.md              # Project documentation
 
 docs/
 
-architecturual_diagram.png   # Architecture diagram 
+architecturual_diagram.jpg   # Architecture diagram 
 
 
 🎉 Thank you for checking out the Bakery Management System!
