@@ -92,7 +92,7 @@ Response:
 }
 
 3. Check Order Status
-Endpoint: GET /5000/health
+Endpoint: GET /order/:id
 
 Description: Check the health of backend.
 
@@ -103,7 +103,7 @@ Response:
 }
 
 4. Health check
-Endpoint: GET /order/:id
+Endpoint: GET /5000/health 
 
 Description: Check the status of an order.
 
